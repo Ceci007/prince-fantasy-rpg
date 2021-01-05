@@ -22,7 +22,7 @@ export default class PreloaderScene extends Phaser.Scene { // eslint-disable-lin
       y: height / 2 + 100,
       text: 'Loading...',
       style: {
-        font: '14px monospace',
+        font: '10px Dragon',
         fill: '#ffffff',
       },
     });
@@ -34,7 +34,7 @@ export default class PreloaderScene extends Phaser.Scene { // eslint-disable-lin
       y: height / 2 - 5,
       text: '0%',
       style: {
-        font: '12px monospace',
+        font: '8px Dragon',
         fill: '#ffffff',
       },
     });
@@ -46,7 +46,7 @@ export default class PreloaderScene extends Phaser.Scene { // eslint-disable-lin
       y: height / 2 + 50,
       text: '',
       style: {
-        font: '12px monospace',
+        font: '8px Dragon',
         fill: '#ffffff',
       },
     });
@@ -80,8 +80,10 @@ export default class PreloaderScene extends Phaser.Scene { // eslint-disable-lin
     this.load.image('box', './src/assets/ui/Box.png');
     this.load.image('checkedBox', './src/assets/ui/CheckedBox.png');
     this.load.image('tiles', './src/assets/map/tileset.png');
+    this.load.image('title', './src/assets/title.png');
     this.load.tilemapTiledJSON('map', './src/assets/map/map.json');
     this.load.audio('bgMusic', ['./src/assets/title.mp3']);
+    this.load.spritesheet('player', './src/assets/adventurer.png', { frameWidth: 50, frameHeight: 37 });
   }
 
   init() {
