@@ -6,16 +6,16 @@ export default class TitleScene extends Phaser.Scene { // eslint-disable-line
     super('Title');
   }
 
-  preload = () => {}
+  // preload = () => {}
 
-  centerButton = (gameObject, offset = 0) => {
+  centerButton(gameObject, offset = 0) {
     Phaser.Display.Align.In.Center(// eslint-disable-line
       gameObject,
       this.add.zone(config.width / 2, config.height / 2 - offset * 100, config.width, config.height), // eslint-disable-line
     );
   }
 
-  create = () => {
+  create() {
     this.gameButton = this.add.sprite(100, 200, 'playButton').setInteractive();
     this.centerButton(this.gameButton, -2);
     this.gameButton.setScale(1, 0.5);

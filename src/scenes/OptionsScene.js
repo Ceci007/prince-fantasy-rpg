@@ -5,9 +5,7 @@ export default class OptionsScene extends Phaser.Scene { // eslint-disable-line
     super('Options');
   }
 
-  preload = () => {
-  }
+  // preload() {}
 
-  create = () => {
-  }
+  // create() {}
 }

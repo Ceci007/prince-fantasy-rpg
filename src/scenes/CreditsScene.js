@@ -5,9 +5,7 @@ export default class CreditsScene extends Phaser.Scene { // eslint-disable-line
     super('Credits');
   }
 
-  preload = () => {
-  }
+  // preload() {}
 
-  create = () => {
-  }
+  // create() {}
 }

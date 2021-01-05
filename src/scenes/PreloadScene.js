@@ -5,10 +5,9 @@ export default class PreloaderScene extends Phaser.Scene { // eslint-disable-lin
     super('Preloader');
   }
 
-  preload = () => {
+  preload() {
     this.add.image(400, 200, 'logo');
 
-    // display progress bar
     const progressBar = this.add.graphics();
     const progressBox = this.add.graphics();
     progressBox.fillStyle(0x222222, 0.8);
@@ -49,6 +48,7 @@ export default class PreloaderScene extends Phaser.Scene { // eslint-disable-lin
         fill: '#ffffff',
       },
     });
+
     assetText.setOrigin(0.5, 0.5);
 
     this.load.on('progress', (value) => {
@@ -58,12 +58,10 @@ export default class PreloaderScene extends Phaser.Scene { // eslint-disable-lin
       progressBar.fillRect(250, 280, 300 * value, 30);
     });
 
-    // update file progress text
     this.load.on('fileprogress', (file) => {
       assetText.setText(`Loading asset: ${file.key}`);
     });
 
-    // remove progress bar when complete
     this.load.on('complete', () => {
       progressBar.destroy();
       progressBox.destroy();
@@ -75,17 +73,16 @@ export default class PreloaderScene extends Phaser.Scene { // eslint-disable-lin
 
     this.timedEvent = this.time.delayedCall(3000, this.ready, [], this);
 
-    // load assets needed in our game
     this.load.image('playButton', './src/assets/ui/PlayButton.png');
     this.load.image('playButton2', './src/assets/ui/PlayButtonPressed.png');
     this.load.image('phaserLogo', './src/assets/logo.png');
   }
 
-  init = () => {
+  init() {
     this.readyCount = 0;
   }
 
-  ready = () => {
+  ready() {
     let count = this.readyCount;
     count++; // eslint-disable-line
 
@@ -94,6 +91,5 @@ export default class PreloaderScene extends Phaser.Scene { // eslint-disable-lin
     }
   }
 
-  create = () => {
-  }
+  // create() {}
 }
