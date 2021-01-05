@@ -1,13 +1,13 @@
 import 'phaser';
 
-export default class OptionsScene extends Phaser.Scene {
-  constructor () {
+export default class OptionsScene extends Phaser.Scene { // eslint-disable-line
+  constructor() {
     super('Options');
   }
 
-  preload () {
+  preload = () => {
   }
 
-  create () {
+  create = () => {
   }
-};
+}

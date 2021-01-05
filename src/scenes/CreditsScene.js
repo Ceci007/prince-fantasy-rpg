@@ -1,13 +1,13 @@
 import 'phaser';
 
-export default class CreditsScene extends Phaser.Scene {
-  constructor () {
+export default class CreditsScene extends Phaser.Scene { // eslint-disable-line
+  constructor() {
     super('Credits');
   }
 
-  preload () {
+  preload = () => {
   }
 
-  create () {
+  create = () => {
   }
-};
+}
