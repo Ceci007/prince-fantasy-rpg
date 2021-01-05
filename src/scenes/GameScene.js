@@ -14,7 +14,7 @@ export default class GameScene extends Phaser.Scene { // eslint-disable-line
     const map = this.make.tilemap({ key: 'map' });
     const tiles = map.addTilesetImage('backgound', 'tiles');
 
-    const background = map.createStaticLayer('Map', tiles, 0, 0);
+    // const background = map.createStaticLayer('Map', tiles, 0, 0);
     const obstacles = map.createStaticLayer('Obstacles', tiles, 0, 0);
     obstacles.setCollisionByExclusion([-1]);
 
@@ -51,7 +51,6 @@ export default class GameScene extends Phaser.Scene { // eslint-disable-line
     });
 
     this.physics.add.collider(this.player, obstacles);
-
   }
 
   // eslint-disable-next-line no-unused-vars

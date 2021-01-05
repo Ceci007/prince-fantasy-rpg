@@ -6,6 +6,5 @@ export default class ScoreScene extends Phaser.Scene {
     super('Scores');
   }
 
-  create() {
-  }
+  // create() { }
 }

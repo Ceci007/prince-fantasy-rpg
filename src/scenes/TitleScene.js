@@ -9,7 +9,7 @@ export default class TitleScene extends Phaser.Scene {
 
   // eslint-disable-next-line class-methods-use-this
   preload() {
-    
+
   }
 
   centerButton(gameObject, offset = 0) {
