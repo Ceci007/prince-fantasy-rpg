@@ -1,7 +1,6 @@
 /* eslint-disable no-undef */
 import 'phaser';
 
-// eslint-disable-next-line no-undef
 export default class CreditsScene extends Phaser.Scene {
   constructor() {
     super('Options');
@@ -43,28 +42,28 @@ export default class CreditsScene extends Phaser.Scene {
 
     Phaser.Display.Align.In.Center(this.menuText, this.menuButton);
 
-    this.menuButton.on('pointerdown', (pointer) => {
+    this.menuButton.on('pointerdown', () => {
       this.scene.start('Title');
     });
 
     this.musicButton.setScale(0.25, 0.25);
     this.soundButton.setScale(0.25, 0.25);
 
-    this.musicButton.on('pointerdown', (pointer) => {
+    this.musicButton.on('pointerdown', () => {
       this.model.musicOn = !this.model.musicOn;
       this.updateAudio();
     });
 
-    this.soundButton.on('pointerdown', (pointer) => {
+    this.soundButton.on('pointerdown', () => {
       this.model.soundOn = !this.model.soundOn;
       this.updateAudio();
     });
 
-    this.menuButton.on('pointerover', (pointer) => {
+    this.menuButton.on('pointerover', () => {
       this.menuButton.setTexture('playButton2');
     });
 
-    this.menuButton.on('pointerout', (pointer) => {
+    this.menuButton.on('pointerout', () => {
       this.menuButton.setTexture('playButton');
     });
 

@@ -1,7 +1,6 @@
 /* eslint-disable no-undef */
 import 'phaser';
 
-// eslint-disable-next-line no-undef
 export default class PreloaderScene extends Phaser.Scene {
   constructor() {
     super('Preloader');

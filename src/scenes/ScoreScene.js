@@ -1,8 +1,8 @@
 /* eslint-disable no-undef */
+/* eslint-disable no-plusplus */
 import 'phaser';
 import { getScore } from '../scoreSystem';
 
-// eslint-disable-next-line no-undef
 export default class ScoreScene extends Phaser.Scene {
   constructor() {
     super('Scores');
@@ -22,15 +22,15 @@ export default class ScoreScene extends Phaser.Scene {
 
       Phaser.Display.Align.In.Center(this.menuText, this.menuButton);
 
-      this.menuButton.on('pointerdown', (pointer) => {
+      this.menuButton.on('pointerdown', () => {
         this.scene.start('Title');
       });
 
-      this.menuButton.on('pointerover', (pointer) => {
+      this.menuButton.on('pointerover', () => {
         this.menuButton.setTexture('playButton2');
       });
 
-      this.menuButton.on('pointerout', (pointer) => {
+      this.menuButton.on('pointerout', () => {
         this.menuButton.setTexture('playButton');
       });
       this.add.text(150, 30, 'HighScores', { font: '16px Dragon' });

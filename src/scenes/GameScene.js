@@ -1,4 +1,6 @@
 /* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
+/* eslint-disable class-methods-use-this */
 import 'phaser';
 import { submitScore, getScore } from '../scoreSystem';
 
@@ -34,7 +36,9 @@ export default class GameScene extends Phaser.Scene {
 
   createMenu() {
     const style = 'font: 10px Dragon; color: white';
-    this.scoreText = this.add.dom(120, 40, 'h2', `${style}`, 'Please enter your name to submit your score').setDisplayOrigin(50, -30).setDepth(1).setVisible(false);
+    this.scoreText = this.add.dom(120, 40, 'h2', `${style}`,
+      'Please enter your name to submit your score')
+      .setDisplayOrigin(50, -30).setDepth(1).setVisible(false);
     const inputBar = document.createElement('div');
     inputBar.innerHTML = `
               <input type="text" id="input" placeholder="MyName" 
@@ -43,21 +47,23 @@ export default class GameScene extends Phaser.Scene {
          `;
 
     const inputStyle = 'width: 200px; text-align: center';
-    this.nameInput = this.add.dom(250, 220, inputBar, `${inputStyle}`).setDisplayOrigin(150, 110).setVisible(false);
+    this.nameInput = this.add.dom(250, 220, inputBar, `${inputStyle}`)
+      .setDisplayOrigin(150, 110).setVisible(false);
     this.sendButton = this.add.sprite(200, 150, 'playButton').disableInteractive();
-    this.sendText = this.add.text(0, 0, 'Submit', { font: '10px Dragon', fill: '#fff' }).setVisible(false);
+    this.sendText = this.add.text(0, 0, 'Submit', { font: '10px Dragon', fill: '#fff' })
+      .setVisible(false);
 
     this.sendButton.setScale(0.4, 0.4);
 
-    this.sendButton.on('pointerover', (pointer) => {
+    this.sendButton.on('pointerover', () => {
       this.sendButton.setTexture('playButton2');
     });
 
-    this.sendButton.on('pointerout', (pointer) => {
+    this.sendButton.on('pointerout', () => {
       this.sendButton.setTexture('playButton');
     });
 
-    this.sendButton.on('pointerup', (pointer) => {
+    this.sendButton.on('pointerup', () => {
       const inputValue = document.getElementById('input').value;
       this.sendButton.disableInteractive();
       if (inputValue === '') {
@@ -82,7 +88,8 @@ export default class GameScene extends Phaser.Scene {
   }
 
   createFloatingText(x, y, message, tint) {
-    const animation = this.add.text(x, y, message, { font: '10px Dragon' }).setTint(tint);
+    const animation = this.add.text(x, y,
+      message, { font: '10px Dragon' }).setTint(tint);
 
     this.add.tween({
 
@@ -120,7 +127,8 @@ export default class GameScene extends Phaser.Scene {
     this.damageCalc = false;
     this.createMenu();
 
-    this.textScore = this.add.text(170, 50, `Score ${this.score}`, { font: '10px Dragon' });
+    this.textScore = this.add.text(170, 50, `Score ${this.score}`,
+      { font: '10px Dragon' });
     this.camera = this.cameras.main.setBounds(0, 0, 400, 320);
 
 
@@ -144,35 +152,40 @@ export default class GameScene extends Phaser.Scene {
 
     this.anims.create({
       key: 'left',
-      frames: this.anims.generateFrameNumbers('player', { frames: [8, 9, 10, 11, 12, 13] }),
+      frames: this.anims
+        .generateFrameNumbers('player', { frames: [8, 9, 10, 11, 12, 13] }),
       frameRate: 10,
       repeat: -1,
     });
 
     this.anims.create({
       key: 'right',
-      frames: this.anims.generateFrameNumbers('player', { frames: [8, 9, 10, 11, 12, 13] }),
+      frames: this.anims
+        .generateFrameNumbers('player', { frames: [8, 9, 10, 11, 12, 13] }),
       frameRate: 10,
       repeat: -1,
     });
 
     this.anims.create({
       key: 'attack',
-      frames: this.anims.generateFrameNumbers('player', { frames: [42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58] }),
+      frames: this.anims
+        .generateFrameNumbers('player', { frames: [42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58] }),
       frameRate: 10,
       repeat: -1,
     });
 
     this.anims.create({
       key: 'iddleEn',
-      frames: this.anims.generateFrameNumbers('slime', { frames: [0, 1, 2, 3] }),
+      frames: this.anims
+        .generateFrameNumbers('slime', { frames: [0, 1, 2, 3] }),
       frameRate: 6,
       repeat: -1,
     });
 
     this.anims.create({
       key: 'hittingEn',
-      frames: this.anims.generateFrameNumbers('slime', { frames: [18, 17] }),
+      frames: this.anims
+        .generateFrameNumbers('slime', { frames: [18, 17] }),
       frameRate: 3,
       repeat: -1,
     });
@@ -180,7 +193,10 @@ export default class GameScene extends Phaser.Scene {
     this.physics.add.collider(this.player, obstacles);
     this.player.body.facing = 14;
     this.model.isPaused = false;
-    this.pause.on('down', (event) => { this.model.isPaused = !this.model.isPaused; this.showPauseMenu(this.model.isPaused); });
+    this.pause.on('down', (event) => {
+      this.model.isPaused = !this.model.isPaused;
+      this.showPauseMenu(this.model.isPaused);
+    });
     this.sys.events.on('wake', this.wake, this);
   }
 
@@ -194,11 +210,13 @@ export default class GameScene extends Phaser.Scene {
       }
 
       if (this.checkOverlap(this.slime, this.player) && this.spaceBar.isDown) {
-        if ((this.player.x - this.slime.x) > 6 && (this.player.x - this.slime.x) < 31) {
+        if ((this.player.x - this.slime.x) > 6
+        && (this.player.x - this.slime.x) < 31) {
           if (this.player.body.facing === 13) {
             this.hitting = true;
           }
-        } else if ((this.player.x - this.slime.x) < -6 && (this.player.x - this.slime.x) > -31) {
+        } else if ((this.player.x - this.slime.x) < -6
+        && (this.player.x - this.slime.x) > -31) {
           if (this.player.body.facing === 14) {
             this.hitting = true;
           }
@@ -217,13 +235,18 @@ export default class GameScene extends Phaser.Scene {
         this.player.anims.play('right', true);
       } else if (this.spaceBar.isDown) {
         this.player.anims.play('attack', true);
-        if (this.player.body.facing === 13 && this.player.anims.currentFrame.index === 14) {
+        if (this.player.body.facing === 13
+          && this.player.anims.currentFrame.index === 14) {
           this.player.body.setVelocityX(-80);
-        } else if (this.player.body.facing === 14 && this.player.anims.currentFrame.index === 14) {
+        } else if (this.player.body.facing === 14
+          && this.player.anims.currentFrame.index === 14) {
           this.player.body.setVelocityX(80);
         }
-        if (this.player.anims.currentFrame.index === 3 || this.player.anims.currentFrame.index === 9 || this.player.anims.currentFrame.index === 14) {
-          if (this.playingSound === false && this.model.soundOn === true) {
+        if (this.player.anims.currentFrame.index === 3
+          || this.player.anims.currentFrame.index === 9
+          || this.player.anims.currentFrame.index === 14) {
+          if (this.playingSound === false
+            && this.model.soundOn === true) {
             this.playingSound = true;
             this.sound.play('swing1', { volume: 0.4 });
           }
@@ -231,7 +254,9 @@ export default class GameScene extends Phaser.Scene {
           this.playingSound = false;
         }
 
-        if (this.player.anims.currentFrame.index === 3 || this.player.anims.currentFrame.index === 9 || this.player.anims.currentFrame.index === 14) {
+        if (this.player.anims.currentFrame.index === 3
+          || this.player.anims.currentFrame.index === 9
+          || this.player.anims.currentFrame.index === 14) {
           if (this.hitting === true) {
             this.slime.anims.play('hittingEn');
             if (this.damageCalc === false) {
