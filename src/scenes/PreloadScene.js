@@ -1,6 +1,5 @@
 /* eslint-disable no-undef */
 import 'phaser';
-import config from '../config/config';
 
 export default class PreloaderScene extends Phaser.Scene { // eslint-disable-line
   constructor() {
@@ -8,8 +7,6 @@ export default class PreloaderScene extends Phaser.Scene { // eslint-disable-lin
   }
 
   preload() {
-    this.add.image(config.width / 2, 200, 'logo');
-
     const progressBar = this.add.graphics();
     const progressBox = this.add.graphics();
     progressBox.fillStyle(0x222222, 0.8);
@@ -31,10 +28,10 @@ export default class PreloaderScene extends Phaser.Scene { // eslint-disable-lin
 
     const percentText = this.make.text({
       x: width / 2,
-      y: height / 2 - 5,
+      y: height / 2,
       text: '0%',
       style: {
-        font: '8px Dragon',
+        font: '10px Dragon',
         fill: '#ffffff',
       },
     });
@@ -84,6 +81,9 @@ export default class PreloaderScene extends Phaser.Scene { // eslint-disable-lin
     this.load.tilemapTiledJSON('map', './src/assets/map/map.json');
     this.load.audio('bgMusic', ['./src/assets/title.mp3']);
     this.load.spritesheet('player', './src/assets/adventurer.png', { frameWidth: 50, frameHeight: 37 });
+    this.load.spritesheet('slime', './src/assets/slime.png', { frameWidth: 32, frameHeight: 25 });
+    this.load.audio('swing1', ['./src/assets/swish1.wav']);
+    this.load.audio('hitSlime', ['./src/assets/slime.wav']);
   }
 
   init() {
@@ -98,6 +98,4 @@ export default class PreloaderScene extends Phaser.Scene { // eslint-disable-lin
       this.scene.start('Title');
     }
   }
-
-  // create() {}
 }

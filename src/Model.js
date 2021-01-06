@@ -4,6 +4,20 @@ export default class Model {
     this._soundOn = true;
     this._musicOn = true;
     this._bgMusicPlaying = false;
+    this._isPaused = false;
+    this._APIkey = 'Zl4d7IVkemOTTVg2fUdz';
+  }
+
+  get APIkey() {
+    return this._APIkey;
+  }
+
+  set isPaused(value) {
+    this._overlap = value;
+  }
+
+  get isPaused() {
+    return this._overlap;
   }
 
   set musicOn(value) {

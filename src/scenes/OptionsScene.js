@@ -6,8 +6,6 @@ export default class OptionsScene extends Phaser.Scene { // eslint-disable-line
     super('Options');
   }
 
-  // preload() { }
-
   updateAudio() {
     if (this.model.musicOn === false) {
       this.musicButton.setTexture('box');
@@ -38,9 +36,9 @@ export default class OptionsScene extends Phaser.Scene { // eslint-disable-line
     this.soundText = this.add.text(160, 144, 'Sound Enabled', { fontSize: 12 });
 
     this.menuButton = this.add.sprite(200, 250, 'playButton').setInteractive();
-    this.menuText = this.add.text(0, 0, 'Back', { font: '14px Dragon', fill: '#fff' });
+    this.menuText = this.add.text(0, 0, 'Back', { font: '10px Dragon', fill: '#fff' });
 
-    this.menuButton.setScale(0.5, 0.5);
+    this.menuButton.setScale(0.4, 0.4);
     Phaser.Display.Align.In.Center(this.menuText, this.menuButton);
 
     this.menuButton.on('pointerdown', () => {
