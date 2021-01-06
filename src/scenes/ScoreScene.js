@@ -2,6 +2,7 @@
 import 'phaser';
 import { getScore } from '../scoreSystem';
 
+// eslint-disable-next-line no-undef
 export default class ScoreScene extends Phaser.Scene {
   constructor() {
     super('Scores');

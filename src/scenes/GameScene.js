@@ -37,8 +37,11 @@ export default class GameScene extends Phaser.Scene {
     this.scoreText = this.add.dom(120, 40, 'h2', `${style}`, 'Please enter your name to submit your score').setDisplayOrigin(50, -30).setDepth(1).setVisible(false);
     const inputBar = document.createElement('div');
     inputBar.innerHTML = `
-            <input type="text" id="input" placeholder="MyName" style="width: 200px;  height: 20px; padding: 3px; text-align: center; border: 1px black solid; font: 12px Dragon; background-color: white;">
+              <input type="text" id="input" placeholder="MyName" 
+              style="width: 200px;  height: 20px; padding: 3px; text-align: center; 
+              border: 1px black solid; font: 12px Dragon; background-color: white;">
          `;
+
     const inputStyle = 'width: 200px; text-align: center';
     this.nameInput = this.add.dom(250, 220, inputBar, `${inputStyle}`).setDisplayOrigin(150, 110).setVisible(false);
     this.sendButton = this.add.sprite(200, 150, 'playButton').disableInteractive();
@@ -56,6 +59,7 @@ export default class GameScene extends Phaser.Scene {
 
     this.sendButton.on('pointerup', (pointer) => {
       const inputValue = document.getElementById('input').value;
+      this.sendButton.disableInteractive();
       if (inputValue === '') {
         submitScore('NoName', this.score).then(data => {
           this.model.isPaused = false;
@@ -219,7 +223,7 @@ export default class GameScene extends Phaser.Scene {
           this.player.body.setVelocityX(80);
         }
         if (this.player.anims.currentFrame.index === 3 || this.player.anims.currentFrame.index === 9 || this.player.anims.currentFrame.index === 14) {
-          if (this.playingSound === false) {
+          if (this.playingSound === false && this.model.soundOn === true) {
             this.playingSound = true;
             this.sound.play('swing1', { volume: 0.4 });
           }
@@ -232,7 +236,9 @@ export default class GameScene extends Phaser.Scene {
             this.slime.anims.play('hittingEn');
             if (this.damageCalc === false) {
               this.damageCalc = true;
-              this.sound.play('hitSlime', { volume: 0.2, pitch: 3 });
+              if (this.model.soundOn === true) {
+                this.sound.play('hitSlime', { volume: 0.2, pitch: 3 });
+              }
               this.score += 10;
               this.createFloatingText(this.slime.x - 5, this.slime.y - 5, '10', 0xffff00);
             }

@@ -1,7 +1,8 @@
 /* eslint-disable no-undef */
 import 'phaser';
 
-export default class PreloaderScene extends Phaser.Scene { // eslint-disable-line
+// eslint-disable-next-line no-undef
+export default class PreloaderScene extends Phaser.Scene {
   constructor() {
     super('Preloader');
   }
@@ -23,7 +24,6 @@ export default class PreloaderScene extends Phaser.Scene { // eslint-disable-lin
         fill: '#ffffff',
       },
     });
-
     loadingText.setOrigin(0.5, 0.5);
 
     const percentText = this.make.text({
@@ -35,7 +35,6 @@ export default class PreloaderScene extends Phaser.Scene { // eslint-disable-lin
         fill: '#ffffff',
       },
     });
-
     percentText.setOrigin(0.5, 0.5);
 
     const assetText = this.make.text({
@@ -43,15 +42,15 @@ export default class PreloaderScene extends Phaser.Scene { // eslint-disable-lin
       y: height / 2 + 50,
       text: '',
       style: {
-        font: '8px Dragon',
+        font: '10px Dragon',
         fill: '#ffffff',
       },
     });
-
     assetText.setOrigin(0.5, 0.5);
 
     this.load.on('progress', (value) => {
-      percentText.setText(`${parseInt(value * 100)}%`); // eslint-disable-line
+      // eslint-disable-next-line radix
+      percentText.setText(`${parseInt(value * 100)}%`);
       progressBar.clear();
       progressBar.fillStyle(0xffffff, 1);
       progressBar.fillRect(100, 150, 200 * value, 15);
@@ -91,10 +90,9 @@ export default class PreloaderScene extends Phaser.Scene { // eslint-disable-lin
   }
 
   ready() {
-    let count = this.readyCount;
-    count++; // eslint-disable-line
-
-    if (count === 2) {
+    // eslint-disable-next-line no-plusplus
+    this.readyCount++;
+    if (this.readyCount === 2) {
       this.scene.start('Title');
     }
   }

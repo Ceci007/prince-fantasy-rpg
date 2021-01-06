@@ -2,6 +2,7 @@
 import 'phaser';
 import config from '../config/config';
 
+// eslint-disable-next-line no-undef
 export default class TitleScene extends Phaser.Scene {
   constructor() {
     super('Title');
@@ -14,6 +15,7 @@ export default class TitleScene extends Phaser.Scene {
     );
   }
 
+  // eslint-disable-next-line class-methods-use-this
   centerButtonText(gameText, gameButton) {
     Phaser.Display.Align.In.Center(
       gameText,
@@ -46,9 +48,11 @@ export default class TitleScene extends Phaser.Scene {
     this.optionsButton.setScale(0.4, 0.4);
     this.ScoreButton.setScale(0.4, 0.4);
 
+
     this.ScoreButton.on('pointerdown', (pointer) => {
       this.scene.start('Scores');
     });
+
 
     this.optionsButton.on('pointerdown', (pointer) => {
       this.scene.start('Options');

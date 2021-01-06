@@ -1,7 +1,8 @@
 /* eslint-disable no-undef */
 import 'phaser';
 
-export default class OptionsScene extends Phaser.Scene { // eslint-disable-line
+// eslint-disable-next-line no-undef
+export default class CreditsScene extends Phaser.Scene {
   constructor() {
     super('Options');
   }
@@ -33,36 +34,37 @@ export default class OptionsScene extends Phaser.Scene { // eslint-disable-line
     this.musicText = this.add.text(160, 94, 'Music Enabled', { font: '12px Dragon' });
 
     this.soundButton = this.add.image(140, 150, 'checkedBox').setInteractive();
-    this.soundText = this.add.text(160, 144, 'Sound Enabled', { fontSize: 12 });
+    this.soundText = this.add.text(160, 144, 'Sound Enabled', { font: '12px Dragon' });
 
     this.menuButton = this.add.sprite(200, 250, 'playButton').setInteractive();
     this.menuText = this.add.text(0, 0, 'Back', { font: '10px Dragon', fill: '#fff' });
 
     this.menuButton.setScale(0.4, 0.4);
+
     Phaser.Display.Align.In.Center(this.menuText, this.menuButton);
 
-    this.menuButton.on('pointerdown', () => {
+    this.menuButton.on('pointerdown', (pointer) => {
       this.scene.start('Title');
     });
 
     this.musicButton.setScale(0.25, 0.25);
     this.soundButton.setScale(0.25, 0.25);
 
-    this.musicButton.on('pointerdown', () => {
+    this.musicButton.on('pointerdown', (pointer) => {
       this.model.musicOn = !this.model.musicOn;
       this.updateAudio();
     });
 
-    this.soundButton.on('pointerdown', () => {
+    this.soundButton.on('pointerdown', (pointer) => {
       this.model.soundOn = !this.model.soundOn;
       this.updateAudio();
     });
 
-    this.menuButton.on('pointerover', () => {
+    this.menuButton.on('pointerover', (pointer) => {
       this.menuButton.setTexture('playButton2');
     });
 
-    this.menuButton.on('pointerout', () => {
+    this.menuButton.on('pointerout', (pointer) => {
       this.menuButton.setTexture('playButton');
     });
 
