@@ -223,6 +223,7 @@ export default class GameScene extends Phaser.Scene {
         }
       }
 
+
       if (this.cursors.left.isDown) {
         this.player.body.offset.x = 50;
         this.player.setScale(-1, 1);
