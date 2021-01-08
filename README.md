@@ -6,11 +6,13 @@ RPG game for microverse capstone project
 
 # Live version
 
-[Prince Fantasy RPG]()
+[Prince Fantasy RPG](https://confident-pike-0ca694.netlify.app/)
 
 # Find the assets here
 [player](https://rvros.itch.io/animated-pixel-hero)
+
 [map](https://vnitti.itch.io/taiga-asset-pack)
+
 [more](https://itch.io/game-assets/free)
 
 # About 
@@ -21,7 +23,7 @@ This is a demo for physics implementation, events and scene reloading/handling. 
 
 # How to run locally
 
-* Simply clone the project run `npm install` and `npm run-script build`
+* Simply clone the project run `npm install` and `npm run build`
 * Open the generated index.html on the dist folder. 
 
 
@@ -38,7 +40,7 @@ This is a demo for physics implementation, events and scene reloading/handling. 
 
 # Get Started
 
-Simply clone the project and run `npm install` && `npm run-script build`
+Simply clone the project and run `npm install` && `npm run build`
 
 
 # Features
