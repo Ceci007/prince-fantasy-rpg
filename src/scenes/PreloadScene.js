@@ -80,6 +80,12 @@ export default class PreloaderScene extends Phaser.Scene {
     this.load.audio('bgMusic', ['./src/assets/title.mp3']);
     this.load.spritesheet('player', './src/assets/adventurer.png', { frameWidth: 50, frameHeight: 37 });
     this.load.spritesheet('slime', './src/assets/slime.png', { frameWidth: 32, frameHeight: 25 });
+    this.load.spritesheet('coin1', './src/assets/coin1.png', { frameWidth: 16, frameHeight: 16 });
+    this.load.audio('collectCoin1', ['./src/assets/coin1.wav'])
+    this.load.spritesheet('coin2', './src/assets/coin2.png', { frameWidth: 16, frameHeight: 16 });
+    this.load.audio('collectCoin2', ['./src/assets/coin2.wav'])
+    this.load.spritesheet('coin3', './src/assets/coin3.png', { frameWidth: 16, frameHeight: 16 });
+    this.load.audio('collectCoin3', ['./src/assets/coin3.wav'])
     this.load.audio('swing1', ['./src/assets/swish1.wav']);
     this.load.audio('hitSlime', ['./src/assets/slime.wav']);
   }

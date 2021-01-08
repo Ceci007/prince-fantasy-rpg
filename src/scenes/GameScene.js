@@ -14,6 +14,9 @@ export default class GameScene extends Phaser.Scene {
     this.score = 0;
     this.hitting = true;
     this.damageCalc = false;
+    this.coin1Check = false;
+    this.coin2Check = false;
+    this.coin3Check = false;
     this.playingSound = false;
     this.player.setPosition(110, 238);
     this.player.body.offset.x = 0;
@@ -125,6 +128,9 @@ export default class GameScene extends Phaser.Scene {
     obstacles.setCollisionByExclusion([-1]);
     this.hitting = true;
     this.damageCalc = false;
+    this.coin1Check = false;
+    this.coin2Check = false;
+    this.coin3Check = false;
     this.createMenu();
 
     this.textScore = this.add.text(170, 50, `Score ${this.score}`,
@@ -133,6 +139,10 @@ export default class GameScene extends Phaser.Scene {
 
 
     this.slime = this.physics.add.sprite(140, 244, 'slime', 1);
+    this.coin1 = this.physics.add.sprite(200, 244, 'coin1', 1);
+    this.coin2 = this.physics.add.sprite(218, 244, 'coin2', 1);
+    this.coin3 = this.physics.add.sprite(236, 244, 'coin3', 1);
+
     this.player = this.physics.add.sprite(110, 238, 'player', 1);
 
     this.physics.world.bounds.width = map.widthInPixels;
@@ -147,6 +157,28 @@ export default class GameScene extends Phaser.Scene {
       key: 'iddle',
       frames: this.anims.generateFrameNumbers('player', { frames: [0, 1, 2, 3] }),
       frameRate: 6,
+      repeat: -1,
+    });
+
+    
+    this.anims.create({
+      key: 'iddleCoin1',
+      frames: this.anims.generateFrameNumbers('coin1', { frames: [0, 1, 2, 3, 4] }),
+      frameRate: 3,
+      repeat: -1,
+    });
+
+    this.anims.create({
+      key: 'iddleCoin2',
+      frames: this.anims.generateFrameNumbers('coin2', { frames: [0, 1, 2, 3, 4] }),
+      frameRate: 3,
+      repeat: -1,
+    });
+
+    this.anims.create({
+      key: 'iddleCoin3',
+      frames: this.anims.generateFrameNumbers('coin3', { frames: [0, 1, 2, 3, 4] }),
+      frameRate: 3,
       repeat: -1,
     });
 
@@ -207,6 +239,45 @@ export default class GameScene extends Phaser.Scene {
     if (this.model.isPaused === false) {
       if (this.hitting === true) {
         this.hitting = false;
+      }
+
+      if (this.checkOverlap(this.coin1, this.player)) {
+        this.coin1.disableBody(true, true);
+
+        if (this.coin1Check === false) {
+          this.coin1Check = true;
+          if (this.model.soundOn === true) {
+            this.sound.play('collectCoin1', { volume: 0.2, pitch: 3 });
+          }
+          this.score += 10;
+          this.createFloatingText(this.coin1.x - 5, this.coin1.y - 5, '10', 0xffff00);
+        } 
+      }
+
+      if (this.checkOverlap(this.coin2, this.player)) {
+        this.coin2.disableBody(true, true);
+
+        if (this.coin2Check === false) {
+          this.coin2Check = true;
+          if (this.model.soundOn === true) {
+            this.sound.play('collectCoin2', { volume: 0.2, pitch: 3 });
+          }
+          this.score += 10;
+          this.createFloatingText(this.coin2.x - 5, this.coin2.y - 5, '10', 0xffff00);
+        }
+      }
+
+      if (this.checkOverlap(this.coin3, this.player)) {
+        this.coin3.disableBody(true, true);
+
+        if (this.coin3Check === false) {
+          this.coin3Check = true;
+          if (this.model.soundOn === true) {
+            this.sound.play('collectCoin3', { volume: 0.2, pitch: 3 });
+          }
+          this.score += 10;
+          this.createFloatingText(this.coin3.x - 5, this.coin3.y - 5, '10', 0xffff00);
+        }
       }
 
       if (this.checkOverlap(this.slime, this.player) && this.spaceBar.isDown) {
@@ -276,10 +347,16 @@ export default class GameScene extends Phaser.Scene {
       } else {
         this.player.anims.play('iddle', true);
         this.slime.anims.play('iddleEn', true);
+        this.coin1.anims.play('iddleCoin1', true);
+        this.coin2.anims.play('iddleCoin2', true);
+        this.coin3.anims.play('iddleCoin3', true);
       }
     } else {
       this.player.anims.play('iddle', true);
       this.slime.anims.play('iddleEn', true);
+      this.coin1.anims.play('iddleCoin1', true);
+      this.coin2.anims.play('iddleCoin2', true);
+      this.coin3.anims.play('iddleCoin3', true);
     }
   }
 }
