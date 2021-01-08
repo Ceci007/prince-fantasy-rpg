@@ -160,7 +160,7 @@ export default class GameScene extends Phaser.Scene {
       repeat: -1,
     });
 
-    
+
     this.anims.create({
       key: 'iddleCoin1',
       frames: this.anims.generateFrameNumbers('coin1', { frames: [0, 1, 2, 3, 4] }),
@@ -251,7 +251,7 @@ export default class GameScene extends Phaser.Scene {
           }
           this.score += 10;
           this.createFloatingText(this.coin1.x - 5, this.coin1.y - 5, '10', 0xffff00);
-        } 
+        }
       }
 
       if (this.checkOverlap(this.coin2, this.player)) {
