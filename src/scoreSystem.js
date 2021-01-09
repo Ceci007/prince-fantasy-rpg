@@ -1,7 +1,7 @@
 /* eslint-disable radix */
 import '@babel/polyfill';
 
-export async function submitScore(userName, scoreValue) {
+export const submitScore = async (userName, scoreValue) => {
   const data = { user: userName, score: parseInt(scoreValue) };
   const parameters = {
     method: 'POST', mode: 'cors', headers: { Accept: 'application/json', 'Content-Type': 'application/json' }, body: JSON.stringify(data),
@@ -11,7 +11,7 @@ export async function submitScore(userName, scoreValue) {
   return confirm;
 }
 
-export async function getScore() {
+export const getScore = async () => {
   const parameters = {
     method: 'GET', headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
   };
@@ -19,3 +19,4 @@ export async function getScore() {
   const data = await response.json();
   return data;
 }
+
