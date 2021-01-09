@@ -1,11 +1,11 @@
 /* eslint-disable no-undef */
 /* eslint-disable import/prefer-default-export */
-import GameScene from '../scenes/GameScene';
-import BootScene from '../scenes/BootScene';
-import PreloaderScene from '../scenes/PreloadScene';
-import TitleScene from '../scenes/TitleScene';
-import ScoreScene from '../scenes/ScoreScene';
-import OptionsScene from '../scenes/OptionsScene';
+import GameScene from './scenes/GameScene';
+import BootScene from './scenes/BootScene';
+import PreloaderScene from './scenes/PreloadScene';
+import TitleScene from './scenes/TitleScene';
+import ScoreScene from './scenes/ScoreScene';
+import OptionsScene from './scenes/OptionsScene';
 
 
 export const gameTestingSuite = () => {
