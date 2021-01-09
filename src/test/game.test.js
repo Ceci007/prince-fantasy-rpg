@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-expressions */
-import testingSuite from '../phaserTest.js';
+import testingSuite from '../phaserTest';
 
 describe('Test the creation of the game canvas', () => {
   test('Check that the game is enabled', () => {

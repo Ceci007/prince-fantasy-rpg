@@ -9,7 +9,7 @@ export const submitScore = async (userName, scoreValue) => {
   const promise = await fetch('https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/Zl4d7IVkemOTTVg2fUdz/scores/', parameters);
   const confirm = await promise.json();
   return confirm;
-}
+};
 
 export const getScore = async () => {
   const parameters = {
@@ -18,5 +18,4 @@ export const getScore = async () => {
   const response = await fetch('https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/Zl4d7IVkemOTTVg2fUdz/scores/', parameters);
   const data = await response.json();
   return data;
-}
-
+};
