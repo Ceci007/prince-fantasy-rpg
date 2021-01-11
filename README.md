@@ -6,7 +6,7 @@ RPG game for microverse capstone project
 
 # Live version
 
-[Prince Fantasy RPG](https://confident-pike-0ca694.netlify.app/)
+[Prince Fantasy RPG](https://musing-chandrasekhar-82e3c9.netlify.app/)
 
 # Contributing 
 
