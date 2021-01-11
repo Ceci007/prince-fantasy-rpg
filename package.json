@@ -21,8 +21,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "build": "webpack-dev-server --w --mode production --open --config ./webpack.config.js",
-    "start": "webpack-dev-server --w --mode development --open --config ./webpack.config.js"
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
