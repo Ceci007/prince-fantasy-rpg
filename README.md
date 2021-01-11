@@ -33,10 +33,13 @@ This is a demo for physics implementation, events and scene reloading/handling. 
 * Open the generated index.html on the dist folder. 
 
 
-# Controls
+
+# Instructions
+You have to collect all coins and kill the slime, then look at your score and submit it.
 
 * Use ESC to open the menu and submit your score
 * Use the Arrow keys for movement
+* Use up arrow to jump
 * Hold space bar for attack
 
 # Validations
