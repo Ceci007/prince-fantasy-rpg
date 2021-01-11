@@ -8,7 +8,13 @@ RPG game for microverse capstone project
 
 [Prince Fantasy RPG](https://confident-pike-0ca694.netlify.app/)
 
+# Contributing 
+
+if you want to contribute to this project send me an email at [cecibenitezca@gmail.com],
+maybe I can send you an invite and you become a collaborator.
+
 # Find the assets here
+
 [player](https://rvros.itch.io/animated-pixel-hero)
 
 [map](https://vnitti.itch.io/taiga-asset-pack)
