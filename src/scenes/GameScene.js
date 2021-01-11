@@ -13,7 +13,6 @@ export default class GameScene extends Phaser.Scene {
   wake() {
     this.model = this.sys.game.globals.model;
     this.score = 0;
-    this.isOnGround = true;
     this.hitting = true;
     this.damageCalc = false;
     this.coin1Check = false;
@@ -122,7 +121,6 @@ export default class GameScene extends Phaser.Scene {
     this.model = this.sys.game.globals.model;
     this.model.isPaused = false;
     this.score = 0;
-    this.isOnGround = true;
     this.playingSound = false;
     const map = this.make.tilemap({ key: 'map' });
     const tiles = map.addTilesetImage('background', 'tiles');
@@ -267,10 +265,6 @@ export default class GameScene extends Phaser.Scene {
         this.hitting = false;
       }
 
-      if (this.isOnGround === false) {
-        this.isOnGround = true;
-      }
-
       if (this.checkOverlap(this.coin1, this.player)) {
         this.coin1.disableBody(true, true);
         this.model.soundOn = true;
@@ -313,6 +307,7 @@ export default class GameScene extends Phaser.Scene {
         }
       }
 
+
       if (this.checkOverlap(this.slime, this.player) && this.spaceBar.isDown) {
         if ((this.player.x - this.slime.x) > 6
         && (this.player.x - this.slime.x) < 31) {
@@ -333,11 +328,11 @@ export default class GameScene extends Phaser.Scene {
         this.player.body.setVelocityX(-80);
         this.player.anims.play('left', true);
       } else if (Phaser.Input.Keyboard.JustDown(this.cursors.up) 
-      && this.isOnGround === true) {
-        
+      && this.player.body.onFloor()) {
         this.player.body.setVelocityY(-2330);
-        this.player.anims.play('jump', true);
-        this.isOnGround = false;
+        if (!this.player.body.onFloor()) {
+          this.player.anims.play('jump', true);        
+        }
       } else if (this.cursors.right.isDown) {
         this.player.body.offset.x = 0;
         this.player.setScale(1, 1);
@@ -365,57 +360,6 @@ export default class GameScene extends Phaser.Scene {
           this.playingSound = false;
           this.player.setVelocityX(0);
         }
-
-        //
-        /*
-        if(this.spaceBar.isDown){
-            this.player.body.velocity.x = 0;
-            if(this.spaceBar.justPressed) {  
-                this.player.anims.play('attack', true);
-                if (this.player.body.facing === 13
-                  && this.player.anims.currentFrame.index === 14) {
-                  this.player.body.setVelocityX(-80);
-                } else if (this.player.body.facing === 14
-                  && this.player.anims.currentFrame.index === 14) {
-                  this.player.body.setVelocityX(80);
-                }
-                if (this.player.anims.currentFrame.index === 3
-                  || this.player.anims.currentFrame.index === 9
-                  || this.player.anims.currentFrame.index === 14) {
-                  if (this.playingSound === false
-                    && this.model.soundOn === true) {
-                    this.playingSound = true;
-                    this.sound.play('swing1', { volume: 0.4 });
-                  }
-                } 
-                else {
-                  this.playingSound = false;
-                }
-            }
-        }
-      
-        if(!this.spaceBar.isDown){
-          if(this.player.body.touching.down){ 
-             if(this.player.body.velocity.x === 0){
-              this.player.anims.play('iddle', true);
-             } else {
-                if (this.cursors.left.isDown) {
-                  this.player.body.offset.x = 50;
-                  this.player.setScale(-1, 1);
-                  this.player.body.setVelocityX(-80);
-                  this.player.anims.play('left', true);
-                } else if (this.cursors.right.isDown) {
-                  this.player.body.offset.x = 0;
-                  this.player.setScale(1, 1);
-                  this.player.body.setVelocityX(80);
-                  this.player.anims.play('right', true);
-                } 
-             }
-          } else {  
-             console.log('jumping!');
-          }
-          */
-        //
 
         if (this.player.anims.currentFrame.index === 3
           || this.player.anims.currentFrame.index === 9
