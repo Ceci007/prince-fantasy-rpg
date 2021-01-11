@@ -129,6 +129,7 @@ export default class GameScene extends Phaser.Scene {
     obstacles.setCollisionByExclusion([-1]);
 
     this.hitting = true;
+    this.iddle = true;
     this.damageCalc = false;
     this.coin1Check = false;
     this.coin2Check = false;
@@ -205,7 +206,7 @@ export default class GameScene extends Phaser.Scene {
     this.anims.create({
       key: 'jump',
       frames: this.anims
-        .generateFrameNumbers('player', { frames: [15, 16, 17, 18, 19, 20] }),
+        .generateFrameNumbers('player', { frames: [16, 17, 18, 19, 20, 21] }),
       frameRate: 10,
       repeat: -1,
     });
@@ -263,6 +264,10 @@ export default class GameScene extends Phaser.Scene {
     if (this.model.isPaused === false) {
       if (this.hitting === true) {
         this.hitting = false;
+      }
+
+      if (this.iddle === true) {
+        this.iddle = false;
       }
 
       if (this.checkOverlap(this.coin1, this.player)) {
@@ -327,21 +332,19 @@ export default class GameScene extends Phaser.Scene {
         this.player.setScale(-1, 1);
         this.player.body.setVelocityX(-80);
         this.player.anims.play('left', true);
-      } else if (Phaser.Input.Keyboard.JustDown(this.cursors.up) 
-      && this.player.body.onFloor()) {
-        this.player.body.setVelocityY(-2330);
-        
-        console.log(this.player.body.velocity.y);
+      } else if (Phaser.Input.Keyboard.JustDown(this.cursors.up)
+      && (this.player.body.touching.down || this.player.body.onFloor())) {
+        this.player.body.setVelocityY(-3330);
+        this.iddle = false;
+
+        if (this.model.soundOn === true) {
+          this.sound?.play('jump', { volume: 0.2, pitch: 3 });
+        }
+
         if (this.player.body.velocity.y < 0) {
-          
           this.player.anims.play('jump', true);
-          console.log("I'm in the air");
         }
-        else if (this.player.body.velocity.y >= 0 && !this.player.body.onFloor()) {
-            // falling anim
-        }
-      } 
-      else if (this.cursors.right.isDown) {
+      } else if (this.cursors.right.isDown) {
         this.player.body.offset.x = 0;
         this.player.setScale(1, 1);
         this.player.body.setVelocityX(80);
@@ -363,8 +366,7 @@ export default class GameScene extends Phaser.Scene {
             this.playingSound = true;
             this.sound.play('swing1', { volume: 0.4 });
           }
-        } 
-        else {
+        } else {
           this.playingSound = false;
           this.player.setVelocityX(0);
         }
@@ -403,7 +405,14 @@ export default class GameScene extends Phaser.Scene {
           if (this.slime) { this.slime.anims?.play('iddleEn', true); }
         }
       } else {
-        this.player.anims.play('iddle', true);
+        if (this.player.body.touching.down || this.player.body.onFloor()) {
+          this.iddle = true;
+        }
+
+        if (this.iddle) {
+          this.player.anims.play('iddle', true);
+        }
+
         if (this.slime) { this.slime.anims?.play('iddleEn', true); }
 
         this.coin1.anims.play('iddleCoin1', true);
