@@ -203,17 +203,17 @@ export default class GameScene extends Phaser.Scene {
     });
 
     this.anims.create({
-      key: 'attack',
+      key: 'jump',
       frames: this.anims
-        .generateFrameNumbers('player', { frames: [42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58] }),
+        .generateFrameNumbers('player', { frames: [15, 16, 17, 18, 19, 20] }),
       frameRate: 10,
       repeat: -1,
     });
 
     this.anims.create({
-      key: 'jump',
+      key: 'attack',
       frames: this.anims
-        .generateFrameNumbers('player', { frames: [15, 16, 17, 18, 19, 20, 21, 22, 23, 24] }),
+        .generateFrameNumbers('player', { frames: [42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58] }),
       frameRate: 10,
       repeat: -1,
     });
@@ -309,14 +309,14 @@ export default class GameScene extends Phaser.Scene {
 
 
       if (this.checkOverlap(this.slime, this.player) && this.spaceBar.isDown) {
-        if ((this.player.x - this.slime.x) > 6
-        && (this.player.x - this.slime.x) < 31) {
-          if (this.player.body.facing === 13) {
+        if ((this.player.x - this.slime.x) < -6
+        && (this.player.x - this.slime.x) > -31) {
+          if (this.player.body.facing === 11) {
             this.hitting = true;
           }
-        } else if ((this.player.x - this.slime.x) < -6
-        && (this.player.x - this.slime.x) > -31) {
-          if (this.player.body.facing === 14) {
+        } else if ((this.player.x - this.slime.x) > 6
+        && (this.player.x - this.slime.x) < 31) {
+          if (this.player.body.facing === 12) {
             this.hitting = true;
           }
         }
@@ -330,10 +330,18 @@ export default class GameScene extends Phaser.Scene {
       } else if (Phaser.Input.Keyboard.JustDown(this.cursors.up) 
       && this.player.body.onFloor()) {
         this.player.body.setVelocityY(-2330);
-        if (!this.player.body.onFloor()) {
-          this.player.anims.play('jump', true);        
+        
+        console.log(this.player.body.velocity.y);
+        if (this.player.body.velocity.y < 0) {
+          
+          this.player.anims.play('jump', true);
+          console.log("I'm in the air");
         }
-      } else if (this.cursors.right.isDown) {
+        else if (this.player.body.velocity.y >= 0 && !this.player.body.onFloor()) {
+            // falling anim
+        }
+      } 
+      else if (this.cursors.right.isDown) {
         this.player.body.offset.x = 0;
         this.player.setScale(1, 1);
         this.player.body.setVelocityX(80);
