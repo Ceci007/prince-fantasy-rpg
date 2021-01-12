@@ -1,0 +1,21 @@
+@font-face {
+  font-family: 'Dragon';
+  src: url('./src/assets/font/Dragon.ttf');
+  font-weight: 400;
+  font-weight: normal;
+}
+
+body {
+  background-color: black;
+}
+
+canvas {
+  border-radius: 20px;
+}
+
+#parent {
+  display: block !important;
+  width: 800px !important;
+  height: 640px !important;
+  margin: 0 auto !important;
+}
